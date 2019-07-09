@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.24815350281134943 -0.9033658382362016 -0.34978565057798183 2.019022490756004
-  position -1.009526695181372 0.9198963898743723 -0.34574121451626716
+  orientation -0.20684018275717117 -0.8851596558812377 -0.41678474347939953 2.3283459331375367
+  position -1.8559054546728004 3.5764254842814727 -1.6114507570336327
 }
 TexturedBackground {
 }
@@ -28,7 +28,7 @@ DEF THREE_WHEELS Robot {
               maxTorque 0.847
             }
             PositionSensor {
-              name "first_position sensor"
+              name "first_position_sensor"
               resolution 0.00385
             }
           ]
@@ -297,6 +297,7 @@ DEF THREE_WHEELS Robot {
               maxTorque 0.847
             }
             PositionSensor {
+              name "second_position_sensor"
               resolution 0.00385
             }
           ]
@@ -498,6 +499,7 @@ DEF THREE_WHEELS Robot {
               maxTorque 0.847
             }
             PositionSensor {
+              name "third_position_sensor"
               resolution 0.00385
             }
           ]
@@ -717,7 +719,7 @@ DEF THREE_WHEELS Robot {
     }
     DEF right LightSensor {
       translation 0.15 0.04 0
-      name "right_light sensor"
+      name "right_light_sensor"
       lookupTable [
         0 0 0
         0.2 65535 0
@@ -726,7 +728,7 @@ DEF THREE_WHEELS Robot {
     DEF lerft LightSensor {
       translation 0.1 0.04 0.1
       rotation 0 1 0 -0.9162996938995747
-      name "left_light sensor(1)"
+      name "left_light_ sensor"
       lookupTable [
         0 0 0
         0.2 65535 0
@@ -735,6 +737,24 @@ DEF THREE_WHEELS Robot {
   ]
   name "robot(1)"
   boundingObject USE BODY_TRANS
+  physics Physics {
+  }
+  controller "three_wheels"
+}
+DEF Wall Solid {
+  translation 1 0.25 0
+  children [
+    DEF wall Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0 0
+        roughness 1
+      }
+      geometry Box {
+        size 0.1 0.5 1.4000000000000001
+      }
+    }
+  ]
+  boundingObject USE wall
   physics Physics {
   }
 }
